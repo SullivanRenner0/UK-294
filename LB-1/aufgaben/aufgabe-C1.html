@@ -1,0 +1,62 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+</style>
+
+<main>
+    <h3>
+        Aufgabe C1: Text - Validieren
+        <span class="right">6 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                Validation wie folgt: <br>
+
+                <ol>
+                    <li>
+                        Das Feld ist mit HTML zu validieren (mindestens 4 Zeichen, maximal 8 Zeichen)
+                    </li>
+                    <li>Bei jeder Eingabe eines Zeichens wird die Stringlänge überprüft, ist diese zu klein, ist das
+                        Feld rot, sonst grün</li>
+                    <li>Wird ein @ eingegeben, dann soll ein alert ausgegeben werden</li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        Input - Felder können mit HTML und JS validiert werden
+                    </li>
+                </ul>
+                <b>Lösungsvorschau:</b>
+                <br>
+                <img src="img/c1.1.gif">
+
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                <div class="input-field">
+                    <label>Validation:</label>
+                    <input type="text" min="4" max="8">
+                </div>
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script>
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+    $('input').keyup(function (e) { 
+        if($('input').val().length < 4){
+            console.log($('input').val());
+            $('input').toggleClass('red');
+        }
+        else{
+            $('input').toggleClass('green');
+        }
+        if($('input').val().includes('@')){
+            alert("Ungültiges Zeichen");
+        }
+    });
+</script>

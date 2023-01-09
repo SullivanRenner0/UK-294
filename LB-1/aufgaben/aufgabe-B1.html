@@ -1,0 +1,53 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+</style>
+
+<main>
+    <h3>
+        Aufgabe - B1: HTML Text per JS & JQuery setzen
+        <span class="right">2 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                <ol>
+                    <li>
+                        Der Text xxxxx (rechts) soll per Java Script (ohne JQuery) verändert werden.
+                        <br>
+                        Ziel ist es, dass Ihr Nachname da steht.
+                    </li>
+                    <li>
+                        Der Text zzzzz (rechts) soll mit JQuery verändert werden.
+                        <br>
+                        Ziel ist es, dass Ihr Vorname da steht.
+                    </li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        Formular oder Modal - Titel sollten wie im folgenden Beispiel (edit oder Neues Auto erfassen)
+                        angepasst werden können:
+                        <br>
+                        <img src="img/b1.1.jpg" width="80%">
+                    </li>
+                </ul>
+
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                <p id="xxx">xxxxx</p>
+                <p id="zzz">zzzzz</p>
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script>
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+    document.getElementById("xxx").innerHTML = "Soller";
+
+    $('#zzz').text("Mario");
+</script>

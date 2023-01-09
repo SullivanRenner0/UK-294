@@ -1,0 +1,96 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+</style>
+
+<main>
+    <h3>
+        Aufgabe G1: Login - Formular
+        <span class="right">3 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                Erstellen Sie rechts ein Login-Formular mit den folgenden Eingabefeldern: (username & password)
+                <br>
+                Es sind zwei Buttons umzusetzen, für Login und Logout.
+                <ol>
+                    <li>
+                        Wenn admin (username) und 1234 (password) eingegeben und auf Login geklickt wird, werden die
+                        Daten per GET an das PHP -
+                        File api.min.php gesendet
+                    </li>
+                    <li>
+                        Bei erfolgreichem Login verschwindet das Formular, dafür erscheint der Logout - Button
+                    </li>
+                    <li>
+                        Beim Klick auf Logout erscheint das Formular wieder, wenn der Logout der API erfolgreich war
+                    </li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        Zugriff schützen
+                    </li>
+                </ul>
+                <hr>
+                <b>Lösungsvorschau:</b> (die Daten könnten anders sein)
+                <br>
+                <img src="img/g1.gif">
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                
+               <div id="formular">
+
+                   <input id="username" type="text" class="validate" placeholder="Username"> 
+                   <input id="password" type="password" class="validate" placeholder="Password"> 
+                </div> 
+                   
+
+                <input class="btn" type="button" value="login" id="login">
+                <input class="btn" type="button" value="logout" id="logout">
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script> 
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+    $('#login').click(function (e) { 
+        e.preventDefault();
+        let username = $('#username').val();
+        let password = $ ('#password').val();
+        console.log(password),
+        $.ajax({
+            type: "LOGIN",
+            url: `api.min.php?username=${username}&password=${password}`,
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                if(response.jwt.admin){
+                    //gültiges Login
+                    $('#login').hide();
+                    $('#logout').show();
+                    $('#formular').hide();
+                    M.toast({html: `Eingeloggt als ${response.jwt.userName}.`, classes: 'green darken-4 white-text'});
+                }
+                else{
+                    //kein gültiges Login
+                    $('#login').show();
+                    $('#logout').hide();
+                    $('#formular').show();
+                    M.toast({html: 'Benutzername oder Passwort falsch.', classes: 'red darken-4 white-text'});
+                }
+            }
+        });
+    });
+    $('#logout').click(function (e) { 
+        e.preventDefault();
+        $('#login').show();
+        $('#logout').hide();
+        $('#formular').show();
+    });
+</script>

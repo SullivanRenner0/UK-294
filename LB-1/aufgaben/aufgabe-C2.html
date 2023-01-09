@@ -1,0 +1,53 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+</style>
+
+<main>
+    <h3>
+        Aufgabe C2: Validation - Meldungen optimieren
+        <span class="right">4 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                Meldungen ausgeben:<br>
+
+                <ol>
+                    <li>
+                        Folgender Code ist rechts zu verwenden: <br>
+                        &lt;a href=&quot;http://www.20min.ch&quot; class=&quot;btn&quot;&gt;Meldung&lt;/a&gt;
+                    </li>
+                    <li>Beim klick auf den Button (Hyperlink) wird die Webseite <b>nicht</b> geöffnet</li>
+                    <li>Beim klick auf den Button (Hyperlink) wird die Meldung (Toast) angezeigt</li>
+                    <li>Die Meldung sollte rot sein, gerundet, mit schwarzer Schrift</li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        Rückmeldungen sind nach Kundenwünschen zu gestalten
+                    </li>
+                </ul>
+                <hr>
+                <b>Lösungsvorschau:</b>
+                <br>
+                <img src="img/c2.1.gif">
+
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                <a id="test-link" href="http://www.20min.ch" class="btn">Meldung</a>
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script>
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+    $('#test-link').click(function (e) { 
+        e.preventDefault();
+        M.toast({html: `Beispiel - Meldung`, classes: 'red rounded darken-4 black-text'});
+    });
+</script>

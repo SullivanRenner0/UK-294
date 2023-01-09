@@ -1,0 +1,100 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+    input[type=text]:focus{
+            border-bottom: 2px solid red !important;
+            -webkit-box-shadow: 0 2px 0 0 red !important;
+            -moz-box-shadow: 0 2px 0 0 red !important;
+            box-shadow: 0 2px 0 0 red !important;
+        }
+        input[type=text]:focus+label{
+        color: red !important;
+    }
+    input[type=text]{
+            border-bottom: 2px solid green !important;
+            -webkit-box-shadow: 0 2px 0 0 green !important;
+            -moz-box-shadow: 0 2px 0 0 green !important;
+            box-shadow: 0 2px 0 0 green !important;
+        }
+</style>
+
+<main>
+    <h3>
+        Aufgabe - B2: input - text Variable, Werte setzen und lesen
+        <span class="right">7 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                In allen Input - Feldern sollte am Schluss Ihr Vor- und Nachname stehen und die Felder sollten
+                entsprechend
+                reagieren (Label und Farbe).
+                <ol>
+                    <li>Feld 1: Value eintragen, Lösung mit HTML</li>
+                    <li>Feld 2: Value eintragen (klick auf Button), Lösung mit JavaScript ohne JQuery</li>
+                    <li>Feld 3: Value eintragen (klick auf Button), Lösung mit JQuery</li>
+                    <li>Alle Feldwerte werden unterhalb angezeigt wenn auf Werte lesen geklickt wird</li>
+                    <li>Label der Felder sind animiert (beim Klick in das Feld, fährt das Label hoch)</li>
+                    <li>Beim Focus sollen der Strich unten und auch der Label-Text rot sein</li>
+                    <li>Verliert man den Focus und steht ein Text im Feld, ist die Linie unten grünlich</li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        Text-Formular Felder und Werte setzen und lesen sowie nach Kundenwünschen anpassen
+                    </li>
+                </ul>
+                <hr>
+                <b>Lösungsvorschau:</b><br>
+                <img src="img/b2.1.gif"><br>
+
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                <div class="input-field">
+                    <input id="text1" type="text">
+                    <label for="text1">Feld 1</label>
+                </div>
+                <div class="input-field">
+                    <input id="text2" type="text">
+                    <label for="text2">Feld 2</label>
+                </div>
+                <div class="input-field">
+                    <input id="text3" type="text">
+                    <label for="text3">Feld 3</label>
+                </div>
+                <button id="write2" class="btn" onclick="write2()">Wert Feld 2 setzen</button>
+                <button id="write3" class="btn">Wert Feld 3 setzen</button>
+                <button id="read" class="btn" onclick="readValues()">Werte lesen</button>
+                <hr>
+                <b>Letzte Werte</b>
+                <p id="perview"></p>
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script>
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+    var val1;
+    var val2;
+    var val3;
+    function write2(){
+        val2 = document.getElementById('text2').value;
+        console.log(val2);
+    }
+    $('#write3').click(function (e) { 
+        e.preventDefault();
+        val3 = $('#text3').val();
+        console.log(val3);
+    });
+    function readValues(){
+        val1 = $('#text1').val();
+        
+        $('#preview').append(val1);
+        $('#preview').append(val2);
+        $('#preview').append(val3);
+    }
+</script>

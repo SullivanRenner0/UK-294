@@ -1,0 +1,93 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+    .datepicker-date-display{
+        background-color: rgba(255, 0, 0, 0.5);
+    }
+    .datepicker-table td.is-today{
+        color: red !important;
+    }
+    .datepicker-table td.is-selected{
+        background-color: rgba(255, 0, 0, 0.5) !important;
+    }
+</style>
+
+<main>
+    <h3>
+        Aufgabe B3: Datepicker
+        <span class="right">7 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                Erstellen Sie einen "Datepicker" auf der rechten Seite mit folgenden Kriterien:
+                <ol>
+                    <li>Das heutige Datum wird beim Anzeigen als auch beim Klick auf "Wert setzen" automatisch
+                        eingetragen.</li>
+                    <li>Das Datum ist wie folgt formatiert: dd.mm.yyyy</li>
+                    <li>Mit dem Button "Wert lesen" wird das Datum gelesen und in der Konsole als log ausgegeben</li>
+                    <li>Das Datum wird nach jedem Lesen in einer Liste unterhalb hinzugefügt und angezeigt</li>
+                    <li>Beim Modal (Datumswahl) sind alle Texte in Deutsch (auch abbrechen und wählen)</li>
+                    <li>Die linke Farbe ist leicht rötlich zu wählen (#c18e8e)</li>
+                    <li>Das heutige Datum ist rot und das Gewählte im Hintergrund leicht rötlich</li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        Datepicker können ausgelesen und gesetzt, sowie nach Kundenwünschen formatiert werden
+                    </li>
+                </ul>
+                <hr>
+                <b>Lösungsvorschau:</b><br>
+                <img src="img/b3.1.0.jpg">
+                <br>
+                <img src="img/b3.1.1.gif">
+
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                <div class="input-field col s4 offset-s4"> 
+                    <input id="mydate" type="text" class="datepicker" /> 
+                </div> 
+
+                <button id="read" class="btn">Wert lesen</button>
+                <button id="write" class="btn">Wert setzen</button>
+                <hr>
+                <b>Letzte Werte</b>
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script>
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+ $('#mydate').datepicker({
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    format: 'dd.mm.yyyy',
+    i18n: {
+        labelMonthNext: 'Nexter Monat',
+        labelMonthPrev: 'Vorheriger Monat',
+        labelMonthSelect: 'Monat wählen',
+        labelYearSelect: 'Jahr wählen',
+        months: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+        monthsShort: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+        monthsLong: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+        weekdays: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+        weekdaysShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+        weekdaysAbbrev: ['S', 'M', 'D', 'M', 'D', 'F', 'S'],
+        today: 'Heute',
+        close: 'schliessen',
+        cancel: 'abbrechen',
+        clear: 'löschen',
+        done: 'wählen'
+    }
+});
+
+$('#read').click(function (e) { 
+    e.preventDefault();
+    console.log($('#mydate').val());
+});
+</script>
