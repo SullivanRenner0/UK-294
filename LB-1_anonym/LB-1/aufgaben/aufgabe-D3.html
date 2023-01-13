@@ -1,0 +1,117 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+</style>
+
+<main>
+    <h3>
+        Aufgabe D3: CRUD
+        <span class="right">5 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                Es sollen in der Lösung 3 Buttons umgesetzt werden (read, write, delete)
+                <ol>
+                    <li>Beim Klick auf "read" werden die Daten geholt, bei id=0 alle, wenn die id grösser als 0 ist, nur den einen Datensatz
+                    (kann fast von D1 bzw. D2 kopiert werden, 0.5 Punkte)</li>
+                    <li>Beim Klick auf "write" werden die Daten in die Datenbank geschrieben (2 Punkte)</li>
+                    <li>Beim Klick auf "delete" wird der Datensatz mit der gewählten id gelöscht (2 Punkte)</li>
+                    <li>Die Anzeige wird jeweils beim "write" und "delete" - Klick aktualisiert (die Formatierung spielt hier kleine Rolle, auch
+                    ein colsole.log ist erlaubt, 0.5 Punkte)</li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        CRUD umsetzen
+                    </li>
+                </ul>
+                <hr>
+                <b>Lösungsvorschau:</b> (die Daten könnten anders sein:)
+                <br>
+                <img src="img/d3.gif">
+
+
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                id:<input id="id" type="number">
+                name: <input id="name" type="text">
+                ort: <input id="ort" type="text">
+                <button class="btn" id="read">read</button>
+                <button class="btn" id="write">write</button>
+                <button class="btn" id="delete">delete</button>
+                <hr>
+                <pre></pre>
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script>
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+    $('#read').click(function(e) {
+        e.preventDefault();
+
+        let id = $('#id').val();
+        $.ajax({
+            type: "GET",
+            url: id > 0 ? "api.min.php?id=" + id : "api.min.php",
+            dataType: "json",
+            success: function (response) {
+                $('pre').text(JSON.stringify(response.data, undefined, 3));
+            }
+        });
+    });
+
+    $('#write').click(function(e) {
+        e.preventDefault();
+
+        let name = $('#name').val();
+        let ort = $('#ort').val();
+
+        $.ajax({
+            type: "POST",
+            url: "api.min.php",
+            data: {
+                "name": name,
+                "ort": ort
+            },
+            dataType: "json",
+            success: function (response) {
+                $.ajax({
+                    type: "GET",
+                    url: "api.min.php",
+                    dataType: "json",
+                    success: function (response) {
+                        $('pre').text(JSON.stringify(response.data, undefined, 3));
+                    }
+                });
+            }
+        });
+    });
+
+    $('#delete').click(function (e) { 
+        e.preventDefault();
+        
+        let id = $('#id').val();
+
+        $.ajax({
+            type: "DELETE",
+            url: "api.min.php?id=" + id,
+            dataType: "json",
+            success: function (response) {
+                $.ajax({
+                    type: "GET",
+                    url: "api.min.php",
+                    dataType: "json",
+                    success: function (response) {
+                        $('pre').text(JSON.stringify(response.data, undefined, 3));
+                    }
+                });
+            }
+        });
+    });
+</script>

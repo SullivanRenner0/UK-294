@@ -1,0 +1,69 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+</style>
+
+<main>
+    <h3>
+        Aufgabe D2: einen Datensatz holen
+        <span class="right">4 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                Beim Klick auf einen Button der in der Lösung umgesetzt werden soll, ist folgendes anzuwenden:
+                <ol>
+                    <li>
+                        JSON von einem Datensatz ist von der api.min.php?id=xxx (xxx=id 1,2 oder 3) in der Konsole als Warnung ausgeben. (2 Punkte)
+                    </li>
+                    <li>
+                        Return-Wert soll als JSON-String unterhalb des Buttons angezeigt werden <br> (TIPP:
+                        replacer=undefiniert,
+                        space=3) (1 Punkt)
+                    </li>
+                    <li>In der Konsole sollte als Info das erste Feld in den Daten ausgegeben werden (im GIF unten wäre das im JSON das Text
+                    Feld) (1 Punkt)</li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        CRUD umsetzen
+                    </li>
+                </ul>
+                <hr>
+                <b>Lösungsvorschau:</b> (die Daten könnten anders sein:)
+                <br>
+                <img src="img/d2.gif">
+
+
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                <button class="btn">1</button>
+                <button class="btn">2</button>
+                <button class="btn">3</button>
+                <hr>
+                <pre></pre>
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script>
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+    $('.btn').click(function(e) {
+        let id = $(this).text();
+        $.ajax({
+            type: "GET",
+            url: "api.min.php?id=" + id,
+            dataType: "json",
+            success: function (response) {
+                console.warn(response);
+                $('pre').text(JSON.stringify(response, undefined, 3));
+                console.info(response.data[0].id)
+            }
+        });
+    })
+</script>
