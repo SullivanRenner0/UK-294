@@ -33,6 +33,90 @@
 
     <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
   </head>
-  <body></body>
+  <body><div class="input-field col s4 offset-s4"> 
+    <input id="mydate" type="text" class="datepicker" /> 
+</div> 
+
+<button id="read" class="btn">Wert lesen</button>
+<button id="write" class="btn">Wert setzen</button>
+<hr>
+<b>Letzte Werte</b>
+
+    <script>
+      $("#mydate").datepicker({
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        format: "dd.mm.yyyy",
+        i18n: {
+          labelMonthNext: "Nexter Monat",
+          labelMonthPrev: "Vorheriger Monat",
+          labelMonthSelect: "Monat wählen",
+          labelYearSelect: "Jahr wählen",
+          months: [
+            "Jan",
+            "Feb",
+            "Mär",
+            "Apr",
+            "Mai",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Okt",
+            "Nov",
+            "Dez",
+          ],
+          monthsShort: [
+            "Jan",
+            "Feb",
+            "Mär",
+            "Apr",
+            "Mai",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Okt",
+            "Nov",
+            "Dez",
+          ],
+          monthsLong: [
+            "Januar",
+            "Februar",
+            "März",
+            "April",
+            "Mai",
+            "Juni",
+            "Juli",
+            "August",
+            "September",
+            "Oktober",
+            "November",
+            "Dezember",
+          ],
+          weekdays: [
+            "Sonntag",
+            "Montag",
+            "Dienstag",
+            "Mittwoch",
+            "Donnerstag",
+            "Freitag",
+            "Samstag",
+          ],
+          weekdaysShort: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+          weekdaysAbbrev: ["S", "M", "D", "M", "D", "F", "S"],
+          today: "Heute",
+          close: "Schliessen",
+          cancel: "Abbrechen",
+          clear: "Löschen",
+          done: "Wählen",
+        },
+      });
+      $('#read').click(function (e) { 
+    e.preventDefault();
+    console.log($('#mydate').val());
+});
+    </script>
+  </body>
   <footer></footer>
 </html>
