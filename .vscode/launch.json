@@ -4,10 +4,11 @@
     // Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
         {
-            "type": "firefox",
+            "type": "chrome",
             "request": "launch",
-            "name": "Open with Firefox",
+            "name": "Open with Chrome",
             "url": "http://localhost/${relativeFile}",
             "webRoot": "${workspaceFolder}"
         }

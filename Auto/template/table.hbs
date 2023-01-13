@@ -1,0 +1,20 @@
+{{#each data}}
+<tr data-id="{{id}}">
+    <td>{{id}}</td>
+    <td>{{name}}</td>
+    <td>{{kraftstoff}}</td>
+    <td>
+        <div class="colordiv">
+            <div class="colorbox" style="background-color: {{farbe}};"></div>
+            <div style="position: relative; left: 10%;">{{farbe}}</div>
+        </div>
+    </td>
+    <td>{{bauart}}</td>
+    <td>{{tanken}}</td>
+    <td>
+        <i class="material-icons left blue-text car">directions_car</i>
+        <i class="material-icons left green-text edit">edit</i>
+        <i class="material-icons left red-text delete">delete</i>
+    </td>
+</tr>
+{{/each}}

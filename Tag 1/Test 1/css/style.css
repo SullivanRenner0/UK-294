@@ -1,0 +1,44 @@
+
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons+Outlined);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone);
+@import url(https://fonts.googleapis.com/icon?family=Material+Symbols+Sharp);
+@import url(https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded);
+@import url(https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined);
+
+/* latin */
+@font-face {
+    font-family: 'Bakbak One';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/bakbak\ one.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+.bakbak{
+    font-family: 'Bakbak One', cursive;
+}
+.icon{
+    font-size: 80px;
+}
+.blau{
+    filter: invert(56%) sepia(43%) saturate(5393%) hue-rotate(161deg) brightness(94%) contrast(103%);
+}
+
+.rot{
+    filter: invert(15%) sepia(52%) saturate(7500%) hue-rotate(354deg) brightness(99%) contrast(116%);
+}
+
+.gruen{
+    filter: invert(77%) sepia(77%) saturate(5226%) hue-rotate(81deg) brightness(116%) contrast(124%);
+}
+
+.gelb{
+    filter: invert(100%) sepia(100%) saturate(4828%) hue-rotate(358deg) brightness(105%) contrast(102%);
+}
+
+@media screen and ( max-width: 300px) {
+    body{
+        background-color: aquamarine;
+    }
+}

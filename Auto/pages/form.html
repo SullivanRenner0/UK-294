@@ -1,0 +1,37 @@
+<p>
+    Hier kommt das Formular hin :)
+</p>
+
+<div class="row"> 
+    <div class="input-field col s12">
+        <i class="material-icons prefix">badge</i>
+        <input id="name" type="text" class="validate" required>
+        <label for="name">Name</label>
+    </div>    
+    <div class="input-field col s12 m6">
+        <i class="material-icons prefix">palette</i>
+        <input id="farbe" type="color" class="validate" required style="margin-top: 10px;">
+    </div>    
+    <div class="input-field col s12 m6">
+        <i class="material-icons prefix">directions_car</i>
+        <input id="bauart" type="text" class="validate" required>
+        <label for="bauart">Bauart</label>
+    </div> 
+    <div class="input-field col s12 m6">
+        <i class="material-icons prefix">propane_tank</i>
+        <input id="tank" type="number" class="validate" required>
+        <label for="tank">Tank</label>
+    </div>
+    
+    <div class="input-field col s12 m6">
+        <i class="material-icons prefix">bolt</i>
+        <select id="kraftstoff" required>
+          <option value="1">Diesel</option>
+          <option value="2">Benzin</option>
+          <option value="3">Elektro</option>
+        </select>
+        <label>Kraftstoff</label>
+    </div>
+</div>
+
+<button id="addCar">Hinzufügen</button>
