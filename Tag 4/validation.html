@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de-ch">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="../../Auto/materialize-src-v1.0.0/materialize-src/sass/materialize.css"
+    />
+
+    <title>Document</title>
+
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+
+    
+    <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="input_text" type="text" data-length="10" maxlength="10" minlength="4">
+              <label for="input_text">Input text</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="textarea2" class="materialize-textarea" data-length="120" maxlength="120"></textarea>
+              <label for="textarea2">Textarea</label>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="input_zahl" type="number" data-length="10" max="6" min="1" step="0.5" value="1.0">
+              <label for="input_zahl">Input number</label>
+            </div>
+          </div>
+        </form>
+      </div>
+          
+    <script>
+        $('input#input_text, textarea#textarea2').characterCounter();
+        $('#input_text').keyup(function (e){
+            e.preventDefault();
+            let invalid = ["<", ">"];
+            var input = $(this).val();
+            if (invalid.some(function(v) { return input.indexOf(v) >= 0; })){
+                M.toast({html: "Unerlaubtes Zeichen"})
+                $(this).addClass("red")
+            }
+            else{
+                $(this).removeClass("red")
+            }
+        })
+
+        $("#input_zahl").focusout(function (e) { 
+            e.preventDefault();
+            let input = $(this).val();
+            var round = Math.round(input * 2) / 2;
+            console.log(round);
+            $(this).val(round);
+            if (input > 6){
+                M.toast({html: "zu gross"})
+                $(this).val(6);
+            }
+            else if (input < 1){
+                M.toast({html: "zu klein"})
+                $(this).val(1);
+            }
+        });
+        
+    </script>
+
+  </body>
+  <footer></footer>
+</html>

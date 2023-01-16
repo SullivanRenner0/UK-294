@@ -1,10 +1,34 @@
 $('.edit').click(function (e){
     e.preventDefault();
     var id = $(this).parent().parent().attr("data-id");
+
     console.log(id + " bearbeiten");
 
-    $("#modalInhalt").load("./pages/form.html", function(){
+    $("#modalInhalt").load("./pages/form.html", async function(){
         $.getScript("./js/form.js");
+        $("#id").val(id);
+        let car = await GetById(id)
+        // console.log(car);
+        car = car.data[0]
+        // console.log(car);
+        $("#id").val(id);
+        $("#name").val(car.name);
+        $("#farbe").val(car.farbe);
+        $("#bauart").val(car.bauart);
+        $("#tank").val(car.tanken);
+        $("#kraftstoff").val(car.kraftstoff);
+        $('select').formSelect();
+
+        // class valid zu inputfeld hinzufügen
+        $("#id").addClass("valid");
+        $("#name").addClass("valid");
+        $("#farbe").addClass("valid");
+        $("#bauart").addClass("valid");
+        $("#tank").addClass("valid");
+        $("#kraftstoff").addClass("valid");
+        // Prefilling Text Inputs (damit Labels nicht im Input Feld sind wenn kein placeholder vorhanden ist)
+        $("#id").addClass("valid grey lighten-2");
+        M.updateTextFields();          
     })
     $("#modalTitel").html("Edit: " + id);
     $("#modal1").modal("open");
@@ -13,8 +37,26 @@ $('.edit').click(function (e){
 
 $('.car').click(function (e){
     e.preventDefault();
-    var id = $(this).parent().parent().attr("data-id");
     console.log(id + " tanken");
+    var id = $(this).parent().parent().attr("data-id");
+
+    $.ajax({
+        type: "GET",
+        url: "api.php?id=" + id,
+        success: function (answer){
+            let car = answer.data[0];
+            car.tanken = Number(car.tanken) + 1;
+            $.ajax({
+                type: "POST", //Get, Post, Put, Delete
+                url: "api.php?id=" + id,
+                data:car,
+                success: function (response) {
+                    // console.log(response);
+                    updateTable();
+                }
+            });
+        }
+    });
 })
 
 $('.delete').click(function (e){
@@ -25,21 +67,27 @@ $('.delete').click(function (e){
         url: "api.php?id=" + id,
         success: function (response) {
             updateTable();
+            M.toast({html: `Auto wurde erfolgreich gelöscht`, classes: 'red rounded darken-4 black-text'});
         }
     });
 })
 
 $('#add').click(function (e){
     e.preventDefault();
-    var id = $(this).parent().parent().attr("data-id");
+    // var id = $(this).parent().parent().attr("data-id");
     console.log("Hinzufügen");
+    LoadModal("Add");
+})
 
+function LoadModal (titel) {
     $("#modalInhalt").load("./pages/form.html", function(){
         $.getScript("./js/form.js");
+        $("#id").addClass("valid grey lighten-2");
+        M.updateTextFields();
     })
-    $("#modalTitel").html("Add");
+    $("#modalTitel").html(titel);
     $("#modal1").modal("open");
-})
+}
 
 $("tr").hover(function () {
         // over
