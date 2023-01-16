@@ -5,7 +5,11 @@ $("a").click(function (e) {
 
 //Tabelle.html nach main laden
 $("main").load("./pages/table.html", function(){
-    $.getScript("js/table.js");
+    $.getScript("js/table.js", function(){
+        $.getScript("js/login.js");
+    });
+    $.getScript("js/apiController.js");
+    
 })
 
 $(".modal").modal();
@@ -36,14 +40,13 @@ $("#save").click(function (e) {
             newCar["farbe"] = $("#farbe").val();
             newCar["bauart"] = $("#bauart").val();
             newCar["tanken"] = $("#tank").val();
-            console.log(newCar);
+            newCar["status"] = $("#aktiv").is(":checked")
             
             $.ajax({
                 type: "POST", //Get, Post, Put, Delete
                 url: "api.php?id=" + $("#id").val(),
                 data: newCar,
                 success: function (response) {
-                    // console.log(response);
                     M.toast({html: `Auto wurde erfolgreich gespeichert`, classes: 'red rounded darken-4 black-text'});
                     updateTable();
                 }
@@ -56,13 +59,79 @@ $("#save").click(function (e) {
     // );
 });
 
+$('#login').click(function (e){
+    e.preventDefault();
+    // var id = $(this).parent().parent().attr("data-id");
+    console.log("Hinzufügen");
+    LoadLogin();
+})
 
-async function GetById(id){
-    return await $.ajax({
+function LoadLogin () {
+    $("#loginInhalt").load("./pages/login.html", function(){
+        $.getScript("./js/login.js");
+    })
+    let titel = "Login";
+    if (IsLogedIn(false, false))
+        titel = "Logout";
+    $("#loginTitel").html(titel);
+    $("#modal2").modal("open");
+}
+
+function UpdateLoginButton(sucess = undefined){
+    if (sucess === undefined)
+        sucess = IsLogedIn(false, false);
+        
+    if (sucess){
+        $("#login").text("logout");
+        $("#login").removeClass("green-text");
+        $("#login").addClass("red-text")
+        $(".action").show();
+        $("#addbutton").show();
+    }
+    else{
+        $("#login").text("login");
+        $("#login").removeClass("red-text");
+        $("#login").addClass("green-text")
+        $(".action").hide();
+        $("#addbutton").hide();
+    }
+}
+function IsLogedIn(showMessage = true, closeModal = true){
+    let sucess = false;
+    $.ajax({
         type: "GET",
-        url: "api.php?id=" + id,
-        success: function (response) {
-            return response.data[0];
+        url: "api.php",
+        dataType: "json",
+        async: false,
+        success: function (response)
+        {
+            if (response.jwt.admin)
+            {
+                if (showMessage)
+                    M.toast({html: "Login erfolgreich (admin)"});
+                $("#logout").show();
+                $("#loginform").hide();
+                sucess = true;
+            } 
+            else
+            {
+                if (showMessage)
+                    M.toast({html: "Login fehlgeschlagen"});
+                $("#logout").hide();
+                $("#loginform").show()
+            }
+        },
+        error: function(){
+            if (showMessage)
+                M.toast({html: "Login fehlgeschlagen"});
+            $("#logout").hide();
+            $("#loginform").show()
         }
     });
+    if (closeModal){
+        $("#loginInhalt").html("")
+        $("#loginTitel").html("");
+        $("#modal2").modal("close");
+    }
+    return sucess;
 }

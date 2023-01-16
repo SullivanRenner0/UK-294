@@ -11,7 +11,12 @@
     </td>
     <td>{{bauart}}</td>
     <td>{{tanken}}</td>
-    <td>
+    {{#ifEquals status "true"}}
+        <td><i class="material-icons left green-text">done</i></td>
+    {{else}}
+        <td><i class="material-icons left red-text">close</i></td>
+    {{/ifEquals}}
+    <td class="action">
         <i class="material-icons left blue-text car">directions_car</i>
         <i class="material-icons left green-text edit">edit</i>
         <i class="material-icons left red-text delete">delete</i>

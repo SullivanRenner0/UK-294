@@ -9,7 +9,17 @@
     justify-content: flex-start;
     align-items: center;
 }
-#add{
+#top{
+    display: flex;
+    align-items: center;
+    padding-right: 2.5%;
+    padding-left: 2.5%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    justify-content: space-between;
+    align-content: center;
+}
+#loginout{
     display: grid;
     justify-items: end;
     align-items: center;
@@ -21,4 +31,7 @@
     position: relative; 
     width: 95%; 
     left: 2.5%;
+}
+#modal{
+    width: 90% !important;
 }

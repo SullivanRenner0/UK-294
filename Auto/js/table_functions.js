@@ -10,13 +10,14 @@ $('.edit').click(function (e){
         let car = await GetById(id)
         // console.log(car);
         car = car.data[0]
-        // console.log(car);
+        console.log(car);
         $("#id").val(id);
         $("#name").val(car.name);
         $("#farbe").val(car.farbe);
         $("#bauart").val(car.bauart);
         $("#tank").val(car.tanken);
         $("#kraftstoff").val(car.kraftstoff);
+        $("#aktiv").prop('checked', car.status == true);
         $('select').formSelect();
 
         // class valid zu inputfeld hinzufügen
@@ -72,7 +73,7 @@ $('.delete').click(function (e){
     });
 })
 
-$('#add').click(function (e){
+$('#addbutton').click(function (e){
     e.preventDefault();
     // var id = $(this).parent().parent().attr("data-id");
     console.log("Hinzufügen");

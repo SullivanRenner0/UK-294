@@ -1,4 +1,5 @@
 id;name;kraftstoff;farbe;bauart;tanken;date;bemerkung;status
-1;dsadf;Diesel;#000000;dsa;4324;;;
-2;dsf;Benzin;#000000;rewr;1;;;
-3;ds12;Elektro;#000000;213;12;;;
+1;saas;Diesel;#962222;dsa;4329;;;true
+2;asas;Benzin;#000000;as;12;;;
+3;fsfw;Diesel;#000000;213;2130;;;
+4;312321;Elektro;#c22e2e;das;32;;;
