@@ -1,0 +1,61 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+</style>
+
+<main>
+    <h3>
+        Aufgabe D1: alle Daten holen
+        <span class="right">4 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                Beim klick auf einen Button der in der Lösung umgesetzt werden soll, ist folgendes anzuwenden:
+                <ol>
+                    <li>
+                        JSON von der api.min.php in der Konsole als Warnung ausgeben. <br> Beispiel:
+                        <br>
+                        <img src="img/dx1.jpg" alt="" srcset="">
+                    </li>
+                    <li>
+                        Return-Wert soll als JSON-String in einem "pre" - Tag angezeigt werden <br>(TIPP: replacer=undefiniert,
+                        space=4)
+                        <br>Beispiel, die Daten könnten anders sein: <br>
+                        <img src="img/dx2.jpg" alt="" srcset="">
+                    </li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        CRUD umsetzen
+                    </li>
+                </ul>
+
+
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                <button id="holen" class="btn">Daten holen</button>
+                <hr>
+                <pre id="pre"></pre>
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script>
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+    $("#holen").click(function (e) {
+        e.preventDefault();
+        $.getJSON("api.min.php",
+            function (response) {
+                let json = JSON.stringify(response, undefined, 4);
+                $("#pre").text(json);
+                console.warn(response);
+            }
+        );
+      })
+</script>

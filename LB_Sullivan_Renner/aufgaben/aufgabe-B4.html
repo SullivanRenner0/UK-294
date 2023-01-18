@@ -1,0 +1,85 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+    /* Input Feld - underline color bei focus */
+    #text:focus {
+        border-bottom: 2px solid red !important;
+        -webkit-box-shadow: 0 2px 0 0 red !important;
+        -moz-box-shadow: 0 2px 0 0 red !important;
+        box-shadow: 0 2px 0 0 red !important;
+      }
+      #label1{
+        color: red !important;
+      }
+</style>
+
+<main>
+    <h3>
+        Aufgabe B4: Textarea
+        <span class="right">4 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                Erstellen Sie ein "Textarea" auf der rechten Seite mit folgenden Kriterien:
+                <ol>
+                    <li>Label und die Linie beim Focus sind rot</li>
+                    <li>mit dem Button "Wert setzen" wird ein Text gesetzt wie im GIF (3 Zeilen, dritte Zeile mit
+                        Abstand)
+                    </li>
+                    <li>Mit dem Button "Wert lesen" werden alle Werte gelesen und in der Konsole als log ausgegeben</li>
+                    <li>Der Text wird nach jedem Lesen in einer Liste unterhalb hinzugefügt und korrekt angezeigt (mit
+                        Zeilenumbrüchen)</li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        Textarea können ausgelesen und gesetzt, sowie nach Kundenwünschen formatiert werden
+                    </li>
+                </ul>
+                <hr>
+                <b>Lösungsvorschau:</b><br>
+                <img src="img/b4.3.1.gif">
+
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                
+                <div class="input-field">
+                    <textarea name="text" id="text" cols="30" rows="10"></textarea>
+                    <label id="label1" for="text">Text</label>
+                </div>
+
+                    <!--             <i class="material-icons prefix">account_circle</i>
+                                <input id="first_name" type="text" class="validate" />
+                                <label for="first_name">First Name</label>          -->
+                  
+
+                <button id="read" class="btn">Wert lesen</button>
+                <button id="write" class="btn">Wert setzen</button>
+                <hr>
+                <b>Letzte Werte</b>
+                <div id="output"></div>
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script>
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+    $("#read").click(function (e) { 
+        e.preventDefault();
+        console.log($("#text").val());
+        $('#output').append("Werte in Textarea:<br>" + $("#text").val().replace(/(\r\n|\n|\r)/gm, "<br>") + "<br>")
+    });
+    $("#write").click(function (e) { 
+        e.preventDefault();
+        let newText = "Zeile 1 ... xxxxxxxxxxx\nZeile 2 ... \n\nEine Zeile mit Abstand";
+        console.log(newText)
+        $("#text").val(newText);
+        $("#text").addClass("valid");
+        M.updateTextFields();       
+    });
+</script>

@@ -1,0 +1,54 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+</style>
+
+<main>
+    <h3>
+        Aufgabe C1: Datums - Feld - Validieren
+        <span class="right">6 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                Validation wie folgt:<br>
+
+                <ol>
+                    <li>Ein Feld für ein Datum ist mit HTML zu validieren (minimum 1.1.2022, maximum 31.12.2026) (2 Punkte)</li>
+                    <li>Beim klick auch "check date", wird das Datum überprüft, und bei einem Wert ausserhalb ein alert
+                        ausgegeben. (4 Punkte)</li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        Input - Felder können mit HTML und JS validiert werden
+                    </li>
+                </ul>
+                <b>Lösungsvorschau:</b>
+                <br>
+                <img src="img/c1.3.gif">
+
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                <input type="date" min="2022-01-01" max="2026-12-31" id="date">
+                <button class="btn" id="check">check Date</button>
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script>
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+    document.getElementById("date").valueAsDate = new Date();
+    $("#check").click(function (e) { 
+        e.preventDefault();
+        if (!$("#date").isValid())
+        window.alert("Ungültiges Datum")
+    });
+    $.fn.isValid = function(){
+        return this[0].checkValidity()
+        }
+</script>

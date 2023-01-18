@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
 <CRUD>
-<LoginRequired>false</LoginRequired>
+<LoginRequired>true</LoginRequired>
 </CRUD>
 <JWT>
 <JWT_Enabled>false</JWT_Enabled>

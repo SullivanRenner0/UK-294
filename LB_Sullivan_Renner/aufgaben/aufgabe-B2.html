@@ -1,0 +1,101 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+    /* #text{
+        color: red;
+    }
+    */
+    .dropdown-content li:hover, .dropdown-content li.active, .select-wrapper input.select-dropdown {
+        background-color: #fc4b4b7c !important;
+    }
+
+</style>
+
+<main>
+    <h3>
+        Aufgabe B2: Drop-Down (Select) - Felder
+        <span class="right">7 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                Erstellen Sie auf der rechten Seite eine "drop-down list" mit folgenden Kriterien:
+                <ol>
+                    <li>Text der angezeigt wird: red, yellow, green, Values: r,y,g</li>
+                    <li>Mit dem Button "Wert setzen" wird Green gesetzt</li>
+                    <li>Mit dem Button "Wert lesen" wird der Wert gelesen und in der Konsole als log ausgegeben</li>
+                    <li>Der Wert wird nach jedem Lesen in einer Liste unterhalb hinzugefügt und angezeigt</li>
+                    <li>Die Texte in der Liste sind rot</li>
+                    <li>Beim Darüberfahren ist der Hintergrund vom Element leicht rötlich</li>
+                    <li>Das Ausgewählte ist im Hintergrund leicht rötlich</li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        Drop-down list können ausgelesen und gesetzt, sowie nach Kundenwünschen formatiert werden
+                    </li>
+                </ul>
+                <hr>
+                <b>Lösungsvorschau:</b><br>
+                <img src="img/b2.3.gif">
+
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                <div>
+                    <select id="select1">
+                        <option disabled>Choose your option</option>
+                        <option value="r">red</option>
+                        <option value="y">yellow</option>
+                        <option value="g">green</option>
+                    </select>
+                    <label>Materialize Select</label>
+                </div>
+                <br>
+                <br>
+                <br>
+                <button id="read" class="btn">Wert lesen</button>
+                <button id="write" class="btn">Wert setzen</button>
+                <hr>
+                <b>Letzte Werte</b>
+                <span id="text"></span>
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script>
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+    // Initialization der select
+    $("select").formSelect();
+
+    // $(".select-wrapper input.select-dropdown").addClass("red lighten-4")
+
+    $("#write").click(function (e) { 
+        e.preventDefault();
+        // Wert setzten
+        $("#select1").val("g");
+        $("select").formSelect();
+    });
+    $("#read").click(function (e) { 
+        e.preventDefault();
+        // Wert lesen
+        let value = $("#select1").val();
+        console.log(value);
+        document.getElementById("text").innerHTML += "<br>" + value
+    });
+    // $("ul li").hover(function () {
+    //         // over
+    //         $(this).addClass("red lighten-4")
+    //     }, function () {
+    //         // out
+    //         $(this).removeClass("red lighten-4")
+    //     }
+    // );
+    // $("select1").change(function (e) { 
+    //     e.preventDefault();
+    //     $(".select-wrapper input.select-dropdown").addClass("red lighten-4")
+    // });
+</script>

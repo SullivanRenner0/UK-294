@@ -14,7 +14,7 @@ $("main").load("./pages/table.html", function(){
 
 $(".modal").modal();
 
-$("#save").click(function (e) { 
+$("#save").click(async function (e) { 
     e.preventDefault();
     var anyError = false;
     $("input").each(function (index, element) {
@@ -39,18 +39,14 @@ $("#save").click(function (e) {
             newCar["kraftstoff"] = $("#kraftstoff option:selected").text();
             newCar["farbe"] = $("#farbe").val();
             newCar["bauart"] = $("#bauart").val();
+            newCar["date"] = $("#date").val();
             newCar["tanken"] = $("#tank").val();
+            newCar["bemerkung"] = $("#bemerkung").val()
             newCar["status"] = $("#aktiv").is(":checked")
             
-            $.ajax({
-                type: "POST", //Get, Post, Put, Delete
-                url: "api.php?id=" + $("#id").val(),
-                data: newCar,
-                success: function (response) {
-                    M.toast({html: `Auto wurde erfolgreich gespeichert`, classes: 'red rounded darken-4 black-text'});
-                    updateTable();
-                }
-            });
+            await UpdateById($("#id").val(), newCar);
+            M.toast({html: `Auto wurde erfolgreich gespeichert`, classes: 'green rounded darken-4 black-text'});
+            updateTable();
             
             $("#modalInhalt").html("")
             $("#modalTitel").html("");
@@ -77,11 +73,11 @@ function LoadLogin () {
     $("#modal2").modal("open");
 }
 
-function UpdateLoginButton(sucess = undefined){
-    if (sucess === undefined)
-        sucess = IsLogedIn(false, false);
+function UpdateLoginButton(admin = undefined){
+    if (admin === undefined)
+        admin = IsLogedIn(false, false);
         
-    if (sucess){
+    if (admin){
         $("#login").text("logout");
         $("#login").removeClass("green-text");
         $("#login").addClass("red-text")
@@ -97,7 +93,7 @@ function UpdateLoginButton(sucess = undefined){
     }
 }
 function IsLogedIn(showMessage = true, closeModal = true){
-    let sucess = false;
+    let admin = false;
     $.ajax({
         type: "GET",
         url: "api.php",
@@ -111,7 +107,7 @@ function IsLogedIn(showMessage = true, closeModal = true){
                     M.toast({html: "Login erfolgreich (admin)"});
                 $("#logout").show();
                 $("#loginform").hide();
-                sucess = true;
+                admin = true;
             } 
             else
             {
@@ -133,5 +129,5 @@ function IsLogedIn(showMessage = true, closeModal = true){
         $("#loginTitel").html("");
         $("#modal2").modal("close");
     }
-    return sucess;
+    return admin;
 }

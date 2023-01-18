@@ -1,5 +1,5 @@
 {{#each data}}
-<tr data-id="{{id}}">
+<tr data-id="{{id}}" class="zeile">
     <td>{{id}}</td>
     <td>{{name}}</td>
     <td>{{kraftstoff}}</td>
@@ -10,16 +10,27 @@
         </div>
     </td>
     <td>{{bauart}}</td>
+    <td class="dateedit">{{date}}</td>
     <td>{{tanken}}</td>
+    <td class="bemerkung"><div class="button grey lighten-2" style="overflow: hidden; max-height: 65px;">{{{bemerkung}}}</div></td>
     {{#ifEquals status "true"}}
-        <td><i class="material-icons left green-text">done</i></td>
+        <td><i class="material-icons left green-text status">done</i></td>
     {{else}}
-        <td><i class="material-icons left red-text">close</i></td>
+        <td><i class="material-icons left red-text status">close</i></td>
     {{/ifEquals}}
     <td class="action">
-        <i class="material-icons left blue-text car">directions_car</i>
-        <i class="material-icons left green-text edit">edit</i>
-        <i class="material-icons left red-text delete">delete</i>
+        <div class="hover-text material-icons left blue-text tooltip tanken">
+            <i class="material-icons left blue-text">directions_car</i>
+            <span class="tooltip-text" id="bottom">Tanken</span>
+        </div>
+        <div class="hover-text material-icons left green-text tooltip edit">
+            <i class="material-icons left green-text">edit</i>
+            <span class="tooltip-text" id="bottom">Bearbeiten</span>
+        </div>
+        <div class="hover-text material-icons left red-text tooltip delete">
+            <i class="material-icons left red-text tooltip">delete</i>
+            <span class="tooltip-text" id="bottom">Löschen</span>
+        </div>
     </td>
 </tr>
 {{/each}}

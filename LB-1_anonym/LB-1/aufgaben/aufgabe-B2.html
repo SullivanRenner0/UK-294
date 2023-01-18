@@ -88,7 +88,7 @@
 
     $('#write3').click(function (e) { 
         e.preventDefault();
-        $('#text3').val('<<Vorname Nachname>>');
+        $('#text3').val('<<Sullivan Renner>>');
         M.updateTextFields();    
     });
 
@@ -96,6 +96,15 @@
     $('#read').click(function(e) {
         console.log('click');
         $('#output').append($('#text1').val() + '<br>' + $('#text2').val() + '<br>' + $('#text3').val() + '<hr>');
+    })
+    $('.input-field').focusout(function(e){
+        if($(this).children('input').val() != ''){
+            $(this).children('input').addClass('valid');
+        } else {
+            if($(this).children('input').hasClass('valid')){
+                $(this).children('input').removeClass('valid');
+            }
+        }
     })
 
 </script>

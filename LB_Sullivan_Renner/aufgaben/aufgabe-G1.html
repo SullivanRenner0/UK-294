@@ -1,0 +1,106 @@
+<style>
+    /* ------------------------------------------------------------------------ Ihr CSS - Style - Code */
+</style>
+
+<main>
+    <h3>
+        Aufgabe G1: Login - Formular
+        <span class="right">3 Pkt.</span>
+    </h3>
+    <table>
+        <tr>
+            <td width="50%">
+                <h6>To Do:</h6>
+                Erstellen Sie rechts ein Login-Formular mit den folgenden Eingabefeldern: (username & password)
+                <br>
+                Es sind zwei Buttons umzusetzen, für Login und Logout.
+                <ol>
+                    <li>
+                        Wenn admin (username) und 1234 (password) eingegeben und auf Login geklickt wird, werden die
+                        Daten per GET an das PHP -
+                        File api.min.php gesendet
+                    </li>
+                    <li>
+                        Bei erfolgreichem Login verschwindet das Formular, dafür erscheint der Logout - Button
+                    </li>
+                    <li>
+                        Beim Klick auf Logout erscheint das Formular wieder, wenn der Logout der API erfolgreich war
+                    </li>
+                </ol>
+                <hr>
+                <b>Kompetenz:</b>
+                <ul class="list-initial">
+                    <li>
+                        Zugriff schützen
+                    </li>
+                </ul>
+                <hr>
+                <b>Lösungsvorschau:</b> (die Daten könnten anders sein)
+                <br>
+                <img src="img/g1.gif">
+            </td>
+            <td>
+                <h6 class="red lighten-4">Ihre Lösung:</h6>
+                <!-- ------------------------------------------------------------------------ Ihr HTML - Code -->
+                <input id="name" type="text">
+                <input id="password" type="password">
+                <input id="login" class="btn" type="button" value="login">
+                <input id="logout" class="btn" type="button" value="logout">
+            </td>
+        </tr>
+    </table>
+</main>
+
+<script>
+    /* ------------------------------------------------------------------------ Ihr JS - Code */
+    updateForm();
+    function updateForm () {
+        $.get("api.min.php?username=" + $("#name").val() + "&password=" + $("#password").val(),
+            function (response) {
+                console.log(response.jwt.admin);
+                if (response.jwt.admin){
+                    $("#name").hide();
+                    $("#password").hide();
+                    $("#login").hide();
+                    $("#logout").show();
+                }
+                else{
+                    $("#name").show();
+                    $("#password").show();
+                    $("#login").show();
+                    $("#logout").hide();
+                }
+            }
+        );
+      }
+      $("#login").click(function (e) { 
+        e.preventDefault();
+        let name = $("#name").val();
+        let password = $("#password").val();
+        console.log(name);
+        console.log(password);
+        $.ajax({
+            type: "LOGIN",
+            url: "api.min.php?username=" + name + "&password=" + password,
+            dataType: "json",
+            success: function (response) {
+                console.log(response)
+                if (response.jwt.admin){
+                    //Login erfolgreich
+                }
+                updateForm();
+            }
+        });
+      });
+      $("#logout").click(function (e) { 
+        e.preventDefault();
+        $.ajax({
+            type: "LOGOUT",
+            url: "api.min.php",
+            dataType: "json",
+            success: function (response) {
+                updateForm();
+            }
+        });
+    });
+</script>
